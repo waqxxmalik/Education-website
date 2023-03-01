@@ -1,0 +1,1145 @@
+<%- include("../partials/header") %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education Website</title>
+
+    <!-- google fonts cdn link  -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/style.css">
+
+
+<style>
+    :root{
+    --gradient:linear-gradient(90deg, #f1c40f, #f39c12);
+}
+
+*{
+    font-family: 'Open Sans', sans-serif;
+    margin:0; padding:0;
+    box-sizing: border-box;
+    border:none; outline: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: all .2s linear;
+}
+
+*::selection{
+    background:#f39c12;
+    color:#fff;
+}
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+}
+
+html::-webkit-scrollbar{
+    width:1.5rem;
+}
+
+html::-webkit-scrollbar-track{
+    background:#333;
+}
+
+html::-webkit-scrollbar-thumb{
+    background:linear-gradient(#f1c40f, #f39c12);
+}
+
+section{
+    min-height: 100vh;
+    padding:1rem 7%;
+    padding-top:6rem;
+}
+
+.btn{
+    padding:.7rem 3rem;
+    font-size: 2rem;
+    color:#fff;
+    background:var(--gradient);
+    border-radius: 5rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    box-shadow: 0 .1rem .3rem rgba(0,0,0,.3);
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.btn::before{
+    content: '';
+    position: absolute;
+    top:-1rem; left:-100%;
+    background:#fff9;
+    height:150%;
+    width:20%;
+    transform: rotate(25deg);
+    z-index: -1;
+}
+
+.btn:hover::before{
+    transition: .3s linear;
+    left: 120%;
+}
+
+.heading{
+    color:#444;
+    padding:1rem;
+    font-size: 4rem;
+    text-align: center;
+}
+
+header{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top:0; left: 0;
+    z-index: 1000;
+    padding:1.5rem 7%;
+    background:var(--gradient);
+    box-shadow: 0 .1rem .3rem rgba(0,0,0,.3);
+}
+
+header .logo{
+    color:#fff;
+    font-size: 2.5rem;
+}
+
+header .navbar ul{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+}
+
+header .navbar ul li{
+    margin-top: 80px;
+    margin:0 1rem;
+}
+
+header .navbar ul li a{
+    font-size: 2rem;
+    color:#fff;
+}
+
+header .navbar ul li a.active,
+header .navbar ul li a:hover{
+    color:#444;
+}
+
+header #login{
+    font-size: 3rem;
+    color:#fff;
+    cursor: pointer;
+}
+
+header #login:hover{
+    color:#444;
+}
+
+header #menu{
+    font-size: 3rem;
+    color:#fff;
+    cursor: pointer;
+    display: none;
+}
+
+.login-form{
+    height:100%;
+    width:100%;
+    position: fixed;
+    top:-120%; left: 0;
+    z-index: 1000;
+    background:rgba(0,0,0,.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-form.popup{
+    top:0;
+}
+
+.login-form form{
+    width:35rem;
+    background:#fff;
+    margin:0 2rem;
+    padding:1rem 3rem;
+    border-radius: .5rem;
+    box-shadow: 0 .1rem .3rem #333;
+    position: relative;
+}
+
+.login-form form h3{
+    font-size: 3rem;
+    color:#f39c12;
+    padding:1rem 0;
+}
+
+.login-form form .box{
+    width:100%;
+    padding:1rem 0;
+    margin:1rem 0;
+    border-bottom: .2rem solid #666;
+    font-size: 1.6rem;
+    color:#333;
+    text-transform: none;
+}
+
+.login-form form .box::placeholder{
+    text-transform: capitalize;
+}
+
+.login-form form .box:focus{
+    border-color: #f39c12;
+}
+
+.login-form form .box:nth-child(3){
+    margin-bottom: 5rem;
+}
+
+.login-form form p{
+    font-size: 1.4rem;
+    color:#666;
+    padding:.5rem 0;
+}
+
+.login-form form p a{
+    color:#f39c12;
+}
+
+.login-form form .btn{
+    width: 100%;
+    margin:2rem 0;
+}
+
+.login-form form .btn:hover{
+    background:#444;
+}
+
+.login-form form .fa-times{
+    position: absolute;
+    top:1.5rem; right:2rem;
+    font-size: 2.5rem;
+    cursor: pointer;
+    color:#999;
+}
+
+.login-form form .fa-times:hover{
+    color:#444;
+}
+
+.home{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    background:url("https://cdn.knoji.com/images/logo/educativeio.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+    text-align: center;
+}
+
+.home h1{
+    font-size: 6rem;
+    color:#666;
+}
+
+.home p{
+    font-size: 1.9rem;
+    color:#999;
+    padding:1rem 0;
+    width:70rem;
+}
+
+.home .shape{
+    position: absolute;
+    bottom:-.2rem; left: 0;
+    height:15rem;
+    width:100%;
+    background:url(../images/shape.png);
+    block-size: 100rem 15rem;
+    filter: drop-shadow(0 -.1rem .1rem rgba(0,0,0,.2));
+    animation: animate 10s linear infinite;
+}
+
+@keyframes animate{
+
+    0%{
+        background-position-x: 0rem;
+    }
+
+    100%{
+        background-position-x: 100rem;
+    }
+
+}
+
+.about{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.about .image{
+    flex:1 1 40rem;
+}
+
+.about .image img{
+    height:65vh;
+    width:100%;
+}
+
+.about .content{
+    flex:1 1 40rem;
+}
+
+.about .content h3{
+    font-size: 3.5rem;
+    color:#666;
+}
+
+.about .content p{
+    font-size: 1.5rem;
+    color:#666;
+    padding:1rem 0;
+}
+
+.course .box-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.course .box-container .box{
+    width:35rem;
+    border:.1rem solid rgba(0,0,0,.3);
+    position: relative;
+    margin:1.5rem;  
+}
+
+.course .box-container .box img{
+    height:20rem;
+    width: 100%;
+    object-fit: cover;
+}
+
+.course .box-container .box .content{
+    padding:1rem;
+}
+
+.course .box-container .box .content .stars i{
+    color:#f39c12;
+    font-size: 1.7rem;
+    padding:1rem .1rem;
+}
+
+.course .box-container .box .content .title{
+    color:#444;
+    font-size: 2.1rem;
+}
+
+.course .box-container .box .content .title:hover{
+    text-decoration: underline;
+}
+
+.course .box-container .box .content p{
+    padding:1rem 0;
+    color:#666;
+    font-size: 1.5rem;
+}
+
+.course .box-container .box .content .info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: .5rem;
+    border-top: .1rem solid rgba(0,0,0,.3);
+}
+
+.course .box-container .box .content .info h3{
+    font-size: 1.5rem;
+    padding:1rem;
+    color:#666;
+}
+
+.course .box-container .box .content .info h3 i{
+    color:#f39c12;
+}
+
+.course .box-container .box .price{
+    position: absolute;
+    top:16rem; right:1rem;
+    height:8rem;
+    width:8rem;
+    line-height: 8rem;
+    text-align: center;
+    border-radius: 50%;
+    background:var(--gradient);
+    color:#fff;
+    font-size: 3rem;
+}
+
+.teacher{
+    text-align: center;
+    background:url("https://img.freepik.com/premium-photo/diversity-teenagers-friends-friendship-team-concept_53876-60788.jpg?size=626&ext=jpg&ga=GA1.2.1286667973.1668520727&semt=sph") no-repeat;
+    background-size: cover;
+    background-position: bottom;
+}
+
+.teacher p{
+    font-size: 1.8rem;
+    color:#666;
+    width:65rem;
+    margin:1rem auto;
+}
+
+.contact{
+    background:#111;
+}
+
+.contact .heading{
+    color:#fff;
+}
+
+.contact .row{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.contact .row form{
+    flex:1 1 50rem;
+    background:#222;
+    padding:2rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+    align-items: flex-start;
+}
+
+.contact .row form .box{
+    height:5rem;
+    width:49%;
+    border:.1rem solid #eee;
+    padding:0 1rem;
+    margin:1rem 0;
+    font-size: 1.7rem;
+    color:#fff;
+    background:none;
+    text-transform: none;
+}
+
+.contact .row form .box:focus{
+    border-color: #f39c12;
+}
+
+.contact .row form .box::placeholder{
+    text-transform: capitalize;
+}
+
+.contact .row form .address{
+    height:15rem;
+    padding:1rem;
+    resize: none;
+    width:100%;
+}
+
+.contact .row form .btn:hover{
+    background:#fff;
+    color:#333;
+}
+
+.contact .row .image img{
+    height: 80vh;
+    margin-top: 2rem;
+}
+
+.footer{
+    background:#333;
+}
+
+.footer .box-container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.footer .box-container .box{
+    margin:1.5rem;
+    text-align: center;
+    flex:1 1 25rem;
+}
+
+.footer .box-container .box h3{
+    font-size: 2.5rem;
+    color:#fff;
+    padding:1rem 0;
+}
+
+.footer .box-container .box p{
+    font-size: 1.7rem;
+    color:#eee;
+    padding:.7rem 0;
+}
+
+.footer .box-container .box p i{
+    padding-right: .5rem;
+    color:#f39c12;
+}
+
+.footer .box-container .box a{
+    font-size: 1.8rem;
+    display: block;
+    padding:.5rem 0;
+    color:#eee;
+}
+
+.footer .box-container .box a:hover{
+    text-decoration: underline;
+}
+
+.footer .credit{
+    padding:2rem 1rem;
+    font-size: 2rem;
+    color:#fff;
+    background:#111;
+    text-align: center;
+    font-weight: normal;
+    padding-bottom: 9rem;
+}
+
+.footer .credit a{
+    color:#f39c12
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* media queries  */
+
+@media (max-width:768px){
+
+    html{
+        font-size: 55%;
+    }
+
+    header #menu{
+        display: block;
+    }
+
+    header .navbar{
+        position: fixed;
+        top:-120%; left:0;
+        width:100%;
+        background:#444;
+    }
+
+    header .navbar ul{
+        flex-flow: column;
+        padding:2rem 0;
+    }
+
+    header .navbar ul li{
+        margin:1.5rem 0;
+        text-align: center;
+        width:100%;
+    }
+
+    header .navbar ul li a{
+        font-size: 2.5rem;
+        display: block;
+    }
+
+    header .navbar ul li a.active,
+    header .navbar ul li a:hover{
+        color:#f39c12;
+    }
+
+    .fa-times{
+        transform: rotate(180deg);
+    }
+
+    header .navbar.nav-toggle{
+        top:6.4rem;
+    }
+
+    .home h1{
+        font-size: 4rem;
+    }
+
+    .home p{
+        width: auto;
+    }
+
+    .teacher p{
+        width:auto;
+    }
+
+    .contact .row .image{
+        display: none;
+    }
+
+}
+
+@media (max-width:500px){
+
+    html{
+        font-size: 50%;
+    }
+
+    .contact .row form .box{
+        width:100%;
+    }
+
+}
+</style>
+
+</head>
+<body>
+   
+<!-- header section starts  -->
+
+<header>
+
+    <div id="menu" class="fas fa-bars"></div>
+
+    <a href="/" class="logo"><i class="fas fa-user-graduate"></i>EDUCATIVE</a>
+
+    <nav class="navbar">
+        <ul style="margin-right: 250px;">
+            <li><a class="active" href="#home">home</a></li>
+            <li><a href="#about">about</a></li>
+            <li><a href="#course">course</a></li>
+            <li><a href="#teacher">teacher</a></li>
+            <li><a href="#contact">contact</a></li>
+        </ul>
+    </nav>
+
+
+    <a href="/login"><div id="login" class="fas fa-user-circle"></div></a>
+
+</header>
+
+
+   
+
+<!-- login form  -->
+
+<!-- home section starts  -->
+
+<section class="home" id="home">
+
+    <a href="#course"><button  style="margin-top: 200px;" class="btn">get started</button></a>
+
+    <div class="shape"></div>
+
+</section>
+
+<!-- home section ends -->
+
+<!-- about section starts  -->
+
+<section class="about" id="about">
+
+    <div class="image">
+        <img src="https://img.freepik.com/free-vector/exams-concept-illustration_114360-2754.jpg?size=338&ext=jpg&ga=GA1.2.1286667973.1668520727&semt=sph" alt="">
+    </div>
+
+    <div class="content">
+        <h3>why choose us?</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam aperiam quaerat dolor voluptas nobis voluptates illum? Inventore voluptas dolore voluptates.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex delectus ducimus dignissimos pariatur. Amet sed distinctio earum dolorum nulla, in obcaecati aliquid modi quos magni ducimus culpa nobis laudantium incidunt.</p>
+        <a href="#"><button class="btn">learn more</button></a>
+    </div>
+
+</section>
+
+<!-- about section ends -->
+
+<!-- course section starts  -->
+
+<section class="course" id="course">
+
+<h1 class="heading">our popular courses</h1>    
+
+<div class="box-container">
+
+    </style>
+    <div class="box">
+        <img src="data:image/jpeg;base64,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" alt="">
+        <h3 class="price">$50</h3>
+        <div class="content">
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half"></i>
+            </div>
+            <a href="#" class="title">learn front end development</a>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, beatae. Modi quos excepturi id quibusdam? Molestiae quis nihil non debitis!</p>
+            <div class="info">
+                <h3> <i class="far fa-clock"></i> 2 hours </h3>
+                <h3> <i class="far fa-calendar-alt"></i> 6 months </h3>
+                <h3> <i class="fas fa-book"></i> 12 modules </h3>
+            </div>
+        </div>
+        <% if(currentUser) { %>
+            <form action="payment"  method="POST">
+                <script
+                    src="//checkout.stripe.com/v2/checkout.js"
+                    class="stripe-button"
+                    data-key="<%= key %>"
+                    data-amount="500"
+                    data-currency="usd"
+                    data-name="Buy that Course"
+                    data-description="Buy Complete Course"
+                    data-locale="auto" >
+                    </script>
+                    <script>
+                        // Hide default stripe button, be careful there if you
+                        // have more than 1 button of that class
+                        document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
+                    </script>
+                   
+
+
+                    <button type="submit" class="button green fsize-16 f-weight-400" style="background-color: #f39c12; padding: 20px; margin-left: 80px; margin-bottom: 10px; border-radius: 50px; ">Purchase Here!</button>
+                 
+                </form>
+        <% } else { %>
+        <a href="/login"><button style="background-color: #f39c12; padding: 20px; margin-left: 80px; margin-bottom: 10px; border-radius: 50px; ">Purchase Here!</button></a>
+         
+        <% } %>
+        
+    </div>
+
+    <div class="box">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBqm2Q-rHFJMej-kZt3lP_QbHYHuFe39CJZ2myTBQsjjd_KdBYG2htoMBQPYjBB153QT0&usqp=CAU" alt="">
+        <h3 class="price">$50</h3>
+        <div class="content">
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half"></i>
+            </div>
+            <a href="#" class="title">learn Backend end development</a>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, beatae. Modi quos excepturi id quibusdam? Molestiae quis nihil non debitis!</p>
+            <div class="info">
+                <h3> <i class="far fa-clock"></i> 2 hours </h3>
+                <h3> <i class="far fa-calendar-alt"></i> 6 months </h3>
+                <h3> <i class="fas fa-book"></i> 12 modules </h3>
+            </div>
+        </div>
+        <% if(currentUser) { %>
+        <form action="payment" method="POST">
+            <script
+                src="//checkout.stripe.com/v2/checkout.js"
+                class="stripe-button"
+                data-key="<%= key %>"
+                data-amount="500"
+                data-currency="usd"
+                data-name="Buy that Course"
+                data-description="Buy Complete Course"
+                data-locale="auto" >
+                </script>
+        
+        
+              <script>
+                  // Hide default stripe button, be careful there if you
+                  // have more than 1 button of that class
+                  document.getElementsByClassName("stripe-button-el")[1].style.display = 'none';
+              </script>
+              <button type="submit" class="button green fsize-16 f-weight-400" style="background-color: #f39c12; padding: 20px; margin-left: 80px; margin-bottom: 10px; border-radius: 50px; ">Purchase Here!</button>
+            </form>
+            <% } else { %>
+                <a href="/login"><button type="submit" class="button green fsize-16 f-weight-400" style="background-color: #f39c12; padding: 20px; margin-left: 80px; margin-bottom: 10px; border-radius: 50px; ">Purchase Here!</button></a>
+                    
+             <% } %>
+
+        </div>
+
+    <div class="box">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReZ7RMaeRUqFo24q2he_ywH203O0Li9xM_t-cX-LOGvAhfBc4vgx0KSDR2_XHkfnVlr9E&usqp=CAU" alt="">
+        <h3 class="price">$50</h3>
+        <div class="content">
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half"></i>
+            </div>
+            <a href="#" class="title">learn Digital Marketting</a>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, beatae. Modi quos excepturi id quibusdam? Molestiae quis nihil non debitis!</p>
+            <div class="info">
+                <h3> <i class="far fa-clock"></i> 2 hours </h3>
+                <h3> <i class="far fa-calendar-alt"></i> 6 months </h3>
+                <h3> <i class="fas fa-book"></i> 12 modules </h3>
+            </div>
+        </div>
+        <% if(currentUser) { %>
+        
+        <form action="payment" method="POST">
+            <script
+                src="//checkout.stripe.com/v2/checkout.js"
+                class="stripe-button"
+                data-key="<%= key %>"
+                data-amount="500"
+                data-currency="usd"
+                data-name="Buy that Course"
+                data-description="Buy Complete Course"
+                data-locale="auto" >
+                </script>
+        
+        
+              <script>
+                  // Hide default stripe button, be careful there if you
+                  // have more than 1 button of that class
+                  document.getElementsByClassName("stripe-button-el")[2].style.display = 'none';
+              </script>
+              <button type="submit" class="button green fsize-16 f-weight-400" style="background-color: #f39c12; padding: 20px; margin-left: 80px; margin-bottom: 10px; border-radius: 50px; ">Purchase Here!</button>
+            </form>
+
+            <% } else { %>
+                <a href="/login"><button type="submit" class="button green fsize-16 f-weight-400" style="background-color: #f39c12; padding: 20px; margin-left: 80px; margin-bottom: 10px; border-radius: 50px; ">Purchase Here!</button></a>
+                    
+             <% } %>
+
+
+        </div>
+
+    <div class="box">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQio-1_ummZIcDKy0APLVcdbyn09vi82pcE1DGIlITuH_pFztEFIURWLcBdTNujYJJs5_M&usqp=CAU" alt="">
+        <h3 class="price">$50</h3>
+        <div class="content">
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half"></i>
+            </div>
+            <a href="#" class="title">learn ReactJS development</a>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, beatae. Modi quos excepturi id quibusdam? Molestiae quis nihil non debitis!</p>
+            <div class="info">
+                <h3> <i class="far fa-clock"></i> 2 hours </h3>
+                <h3> <i class="far fa-calendar-alt"></i> 6 months </h3>
+                <h3> <i class="fas fa-book"></i> 12 modules </h3>
+            </div>
+        </div>
+        <% if(currentUser) { %>
+        <form action="payment" method="POST">
+            <script
+                src="//checkout.stripe.com/v2/checkout.js"
+                class="stripe-button"
+                data-key="<%= key %>"
+                data-amount="500"
+                data-currency="usd"
+                data-name="Buy that Course"
+                data-description="Buy Complete Course"
+                data-locale="auto" >
+                </script>
+        
+        
+              <script>
+                  // Hide default stripe button, be careful there if you
+                  // have more than 1 button of that class
+                  document.getElementsByClassName("stripe-button-el")[3].style.display = 'none';
+              </script>
+              <button type="submit" class="button green fsize-16 f-weight-400" style="background-color: #f39c12; padding: 20px; margin-left: 80px; margin-bottom: 10px; border-radius: 50px; ">Purchase Here!</button>
+          
+            </form>
+            <% } else { %>
+                <a href="/login"><button type="submit" class="button green fsize-16 f-weight-400" style="background-color: #f39c12; padding: 20px; margin-left: 80px; margin-bottom: 10px; border-radius: 50px; ">Purchase Here!</button></a>
+                    
+             <% } %>
+
+</div>
+
+    <div class="box">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMVBf1sMIcqrMJXJ62Ga4oDxN1647g2xvAFQu8J8Ucj0CretBaZ8VBPJw1dp_-hpmJCvw&usqp=CAU" alt="">
+        <h3 class="price">$50</h3>
+        <div class="content">
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half"></i>
+            </div>
+            <a href="#" class="title">learn Graphic Designing</a>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, beatae. Modi quos excepturi id quibusdam? Molestiae quis nihil non debitis!</p>
+            <div class="info">
+                <h3> <i class="far fa-clock"></i> 2 hours </h3>
+                <h3> <i class="far fa-calendar-alt"></i> 6 months </h3>
+                <h3> <i class="fas fa-book"></i> 12 modules </h3>
+            </div>
+        </div>
+        <% if(currentUser) { %>
+
+        <form action="payment" method="POST">
+            <script
+                src="//checkout.stripe.com/v2/checkout.js"
+                class="stripe-button"
+                data-key="<%= key %>"
+                data-amount="500"
+                data-currency="usd"
+                data-name="Buy that Course"
+                data-description="Buy Complete Course"
+                data-locale="auto" >
+                </script>
+        
+        
+              <script>
+                  // Hide default stripe button, be careful there if you
+                  // have more than 1 button of that class
+                  document.getElementsByClassName("stripe-button-el")[4].style.display = 'none';
+              </script>
+              <button type="submit" class="button green fsize-16 f-weight-400" style="background-color: #f39c12; padding: 20px; margin-left: 80px; margin-bottom: 10px; border-radius: 50px; ">Purchase Here!</button>
+          
+            </form>
+            <% } else { %>
+                <a href="/login"><button type="submit" class="button green fsize-16 f-weight-400" style="background-color: #f39c12; padding: 20px; margin-left: 80px; margin-bottom: 10px; border-radius: 50px; ">Purchase Here!</button></a>
+                    
+             <% } %>
+
+    </div>
+
+    <div class="box">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNuJ0QvceOz0Ar8SfFoexo0fW6ZsJH0pluyTwsHUv3j5jRQ0oAHTcmG-fF9ByPZYx7oCE&usqp=CAU" alt="">
+        <h3 class="price">$50</h3>
+        <div class="content">
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half"></i>
+            </div>
+            <a href="#" class="title">learn Full Stack development</a>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, beatae. Modi quos excepturi id quibusdam? Molestiae quis nihil non debitis!</p>
+            <div class="info">
+                <h3> <i class="far fa-clock"></i> 2 hours </h3>
+                <h3> <i class="far fa-calendar-alt"></i> 6 months </h3>
+                <h3> <i class="fas fa-book"></i> 12 modules </h3>
+            </div>
+        </div>
+        <% if(currentUser) { %>
+
+
+        <form action="payment" method="POST">
+            <script
+                src="//checkout.stripe.com/v2/checkout.js"
+                class="stripe-button"
+                data-key="<%= key %>"
+                data-amount="500"
+                data-currency="usd"
+                data-name="Buy that Course"
+                data-description="Buy Complete Course"
+                data-locale="auto" >
+                </script>
+        
+        
+              <script>
+                  // Hide default stripe button, be careful there if you
+                  // have more than 1 button of that class
+                  document.getElementsByClassName("stripe-button-el")[5].style.display = 'none';
+              </script>
+              <button type="submit" class="button green fsize-16 f-weight-400" style="background-color: #f39c12; padding: 20px; margin-left: 80px; margin-bottom: 10px; border-radius: 50px; ">Purchase Here!</button>
+          
+            </form>
+            <% } else { %>
+                <a href="/login"><button type="submit" class="button green fsize-16 f-weight-400" style="background-color: #f39c12; padding: 20px; margin-left: 80px; margin-bottom: 10px; border-radius: 50px; ">Purchase Here!</button></a>
+                    
+             <% } %>
+
+  
+    </div>
+
+</div>
+
+</section>
+
+<!-- course section ends -->
+
+<!-- teacher section starts  -->
+
+<section class="teacher" id="teacher">
+
+<h1 class="heading" style="color:#f39c12;">our expert teachers</h1>
+
+<p style="color:black">Lorem ipsum, dolor sit amet consectetur adipisicing elit. At non explicabo tempora modi, reprehenderit ratione sunt ea porro tenetur officiis alias sapiente praesentium voluptas cumque quo maiores dolores totam ex.</p>
+
+<a href="#"><button class="btn">learn more</button></a>
+
+</section>
+
+<!-- teacher section ends -->
+
+<!-- contact section starts  -->
+
+<section class="contact" id="contact">
+
+<h1 class="heading">contact us</h1>
+
+<div class="row">
+
+    <form action="/contact" post="POST">
+        <input type="text" required="true" placeholder="full name" class="box">
+        <input type="email" required="true" placeholder="your email" class="box">
+        <input type="password" required="true" placeholder="your password" class="box">
+        <input type="number" required="true" placeholder="your number" class="box">
+        <textarea name="" id="" required="true" cols="30" rows="10" class="box address" placeholder="your address"></textarea>
+        <input type="submit" class="btn" value="send now">
+    </form>
+
+    <div class="image">
+        <img src="images/ng" alt="">
+    </div>
+
+</div>
+
+</section>
+
+<!-- contact section ends -->
+
+<!-- footer section starts  -->
+
+
+    <div class="footer">
+
+        <div class="box-container">
+    
+            <div class="box">
+                <h3>branch locations</h3>
+                <a href="#">India</a>
+                <a href="#">USA</a>
+                <a href="#">france</a>
+                <a href="#">russia</a>
+            </div>
+    
+            <div class="box">
+                <h3>quick links</h3>
+                <a href="#">home</a>
+                <a href="#">about</a>
+                <a href="#">course</a>
+                <a href="#">teachers</a>
+                <a href="#">contact</a>
+            </div>
+    
+            <div class="box">
+                <h3>contact info</h3>
+                <p> <i class="fas fa-map-marker-alt"></i> mumbai, india 400104. </p>
+                <p> <i class="fas fa-envelope"></i> example@gmail.com </p>
+                <p> <i class="fas fa-phone"></i> +123-456-7890 </p>
+            </div>
+    
+        </div>
+    
+        <h1 class="credit"> all rights reserved. </h1>
+    
+    </div>
+
+
+
+<!-- footer section ends -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    $(document).ready(function(){
+
+$('#menu').click(function(){
+    $(this).toggleClass('fa-times');
+    $('.navbar').toggleClass('nav-toggle');
+});
+
+$('#login').click(function(){
+    $('.login-form').addClass('popup');
+});
+
+$('.login-form form .fa-times').click(function(){
+    $('.login-form').removeClass('popup');
+});
+
+$(window).on('load scroll',function(){
+
+    $('#menu').removeClass('fa-times');
+    $('.navbar').removeClass('nav-toggle');
+
+    $('.login-form').removeClass('popup');
+
+    $('section').each(function(){
+
+        let top = $(window).scrollTop();
+        let height = $(this).height();
+        let id = $(this).attr('id');
+        let offset = $(this).offset().top - 200;
+
+        if(top > offset && top < offset + height){
+            $('.navbar ul li a').removeClass('active');
+            $('.navbar').find(`[href="#${id}"]`).addClass('active');
+        }
+
+
+    });
+
+});
+
+}); 
+</script>
+
+
+<!-- jquery cdn link  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!-- custom js file link  -->
+</body>
+</html>
